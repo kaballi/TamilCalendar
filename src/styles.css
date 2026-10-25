@@ -1,0 +1,121 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+
+@theme inline {
+  --font-tamil: "Mukta Malar", "Catamaran", sans-serif;
+  --font-display: "Archivo Black", "Mukta Malar", sans-serif;
+  --radius-sm: 0px;
+  --radius-md: 2px;
+  --radius-lg: 4px;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-temple: var(--temple);
+  --color-temple-foreground: var(--temple-foreground);
+  --color-maroon: var(--maroon);
+  --color-maroon-foreground: var(--maroon-foreground);
+  --color-ink: var(--ink);
+  --color-letter: var(--letter);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+}
+
+:root {
+  --radius: 0px;
+  --background: oklch(0.96 0.03 85);
+  --foreground: oklch(0.18 0.02 40);
+  --card: oklch(0.99 0.015 90);
+  --card-foreground: oklch(0.18 0.02 40);
+  --popover: oklch(0.99 0.015 90);
+  --popover-foreground: oklch(0.18 0.02 40);
+  --primary: oklch(0.84 0.17 85); /* turmeric */
+  --primary-foreground: oklch(0.18 0.02 40);
+  --secondary: oklch(0.58 0.21 27); /* kumkum */
+  --secondary-foreground: oklch(0.98 0.01 90);
+  --temple: oklch(0.55 0.13 155);
+  --temple-foreground: oklch(0.98 0.01 90);
+  --maroon: oklch(0.36 0.12 20);
+  --maroon-foreground: oklch(0.96 0.03 85);
+  --muted: oklch(0.91 0.04 80);
+  --muted-foreground: oklch(0.4 0.04 40);
+  --accent: oklch(0.8 0.1 200);
+  --accent-foreground: oklch(0.18 0.02 40);
+  --destructive: oklch(0.58 0.21 27);
+  --destructive-foreground: oklch(0.98 0 0);
+  --ink: oklch(0.15 0.01 40);
+  --letter: oklch(0.36 0.12 20 / 0.12);
+  --border: oklch(0.15 0.01 40);
+  --input: oklch(0.15 0.01 40);
+  --ring: oklch(0.58 0.21 27);
+  --shadow-brutal: 6px 6px 0 0 var(--ink);
+  --shadow-brutal-sm: 3px 3px 0 0 var(--ink);
+}
+
+
+@layer base {
+  * { border-color: var(--color-border); }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-tamil);
+  }
+}
+
+@utility brutal {
+  border: 3px solid var(--border);
+  box-shadow: var(--shadow-brutal);
+}
+@utility brutal-sm {
+  border: 3px solid var(--border);
+  box-shadow: var(--shadow-brutal-sm);
+}
+@utility brutal-btn {
+  border: 3px solid var(--border);
+  box-shadow: var(--shadow-brutal-sm);
+  transition: transform 0.1s, box-shadow 0.1s;
+  &:hover { transform: translate(-2px, -2px); box-shadow: 5px 5px 0 0 var(--ink); }
+  &:active { transform: translate(3px, 3px); box-shadow: 0 0 0 0 var(--ink); }
+}
+@utility kolam-bg {
+  background-image: radial-gradient(var(--ink) 1.6px, transparent 1.8px);
+  background-size: 14px 14px;
+}
+
+@keyframes drift {
+  0%, 100% { transform: translateY(0) rotate(var(--r, 0deg)); }
+  50% { transform: translateY(-18px) rotate(calc(var(--r, 0deg) + 8deg)); }
+}
+@keyframes stamp {
+  0% { opacity: 0; transform: scale(2.2) rotate(-8deg); }
+  70% { opacity: 1; transform: scale(0.92); }
+  100% { opacity: 1; transform: scale(1); }
+}
+@keyframes draw { to { stroke-dashoffset: 0; } }
+@keyframes spin-slow { to { transform: rotate(360deg); } }
+@keyframes sway { 0%, 100% { transform: rotate(-4deg); } 50% { transform: rotate(4deg); } }
+
+@utility animate-drift { animation: drift 9s ease-in-out infinite; }
+@utility animate-stamp { animation: stamp 0.55s cubic-bezier(.2,.9,.3,1.3) both; }
+@utility animate-draw { stroke-dasharray: 600; stroke-dashoffset: 600; animation: draw 2.4s ease forwards; }
+@utility animate-spin-slow { animation: spin-slow 18s linear infinite; }
+@utility animate-sway { animation: sway 3s ease-in-out infinite; transform-origin: top center; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; stroke-dashoffset: 0 !important; }
+}
