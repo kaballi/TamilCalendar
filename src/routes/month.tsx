@@ -172,7 +172,7 @@ function MonthView() {
             const isToday = sameDay(d, today);
             const isBirthday = birthday !== null && sameDay(d, birthday);
             const big = mode === "ta" ? num(t.day) : d.d;
-            const small = mode === "ta" ? `${d.d} ${(EN_MONTHS[d.m - 1] ?? "").slice(0, 3)}` : `${(TAMIL_MONTHS[t.month] ?? "").slice(0, 3)} ${t.day}`;
+            const small = mode === "ta" ? `${d.d} ${(EN_MONTHS[d.m - 1] ?? "").slice(0, 3)}` : `${TAMIL_MONTHS[t.month]} ${t.day}`;
             return (
               <div
                 key={d.d + "-" + d.m}
@@ -181,7 +181,17 @@ function MonthView() {
                 } ${isBirthday ? "ring-4 ring-inset ring-secondary" : ""}`}
               >
                 <span className={`max-w-full leading-tight whitespace-nowrap ${mode === "ta" && taNum ? "font-tamil font-extrabold text-[clamp(0.7rem,3.4vw,1.875rem)]" : "font-display text-[clamp(1rem,4.5vw,1.875rem)]"}`}>{big}</span>
-                <span className={`max-w-full truncate text-[9px] font-bold leading-tight sm:text-[10px] md:text-xs ${mode === "ta" ? "font-display" : ""}`}><span className="sm:hidden">{mode === "ta" ? d.d : t.day}</span><span className="hidden sm:inline">{small}</span></span>
+                <span className={`max-w-full text-[9px] font-bold leading-tight sm:text-[10px] md:text-xs ${mode === "ta" ? "font-display" : ""}`}>
+                  <span className="sm:hidden">
+                    {mode === "ta" ? d.d : (
+                      <span className="flex flex-col items-center">
+                        <span className="max-w-full break-all font-tamil text-[7px]">{TAMIL_MONTHS[t.month]}</span>
+                        <span className="font-tamil">{t.day}</span>
+                      </span>
+                    )}
+                  </span>
+                  <span className="hidden sm:inline">{small}</span>
+                </span>
                 {fest.length > 0 && <span className="hidden truncate text-[11px] font-extrabold md:block">🪔 {fest[0]}</span>}
               </div>
             );

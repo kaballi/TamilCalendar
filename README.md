@@ -13,35 +13,6 @@ Discover today's Tamil date at a glance. **தமிழ் நாட்காட
 - **Moon phase and sunrise:** View the current moon phase and estimated sunrise time. Sunrise uses your device location when permission is granted; otherwise, it defaults to Chennai.
 - **Made for Tamil:** Switch between Tamil and English date displays, with optional Tamil numerals.
 
-Tamil calendar dates are calculated in the browser from the Sun's sidereal position. The calendar does not require a backend and can calculate dates offline. Sunrise location access is optional.
-
-## Try it
-
-Visit **[tamil-thirunaal-calendar.lovable.app](https://tamil-thirunaal-calendar.lovable.app/)** to use the calendar.
-
-## Run locally
-
-Requirements: Node.js and npm.
-
-```sh
-git clone <repository-url>
-cd tamil-thirunaal-calendar
-npm ci
-npm run dev
-```
-
-Vite prints the local development URL in the terminal.
-
-## Project scripts
-
-| Command | Description |
-| --- | --- |
-| `npm run dev` | Start the local development server |
-| `npm run build` | Create a production build |
-| `npm run preview` | Preview the production build |
-| `npm test` | Run the test suite |
-| `npm run lint` | Run ESLint |
-
 ## Built with
 
 React 19 · TypeScript · TanStack Start and Router · Tailwind CSS 4 · Vite · Vitest
